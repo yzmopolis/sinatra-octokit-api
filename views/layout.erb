@@ -16,6 +16,15 @@
           <div class="tile is-parent is-vertical">
             <article class="tile is-child notification is-primary">
               <h1 class="title"><%= @title %></h1>
+              <ul>
+                <li><a href="/">Home</a></li>
+                <% unless @current_user %>
+                <li><a href="/">Sign in</a></li>
+                <% else %><li><a href="/">Sign out</a></li>
+                  <li><a href="/">Github</a></li>
+                <% end %>
+<!--// SCRATCH!!! TODO-->
+              </ul>
             </article>
             <article class="tile is-child notification is-info">
               <%= yield %>
