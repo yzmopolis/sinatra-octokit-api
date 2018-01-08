@@ -1,16 +1,16 @@
 require 'octokit'
 require 'sinatra'
-require 'active_record'
-
-ActiveRecord::Base.establish_connection(
-    :adapter => 'sqlite3',
-    :database =>  'sinatra_application.sqlite3.db'
-)
+# require 'active_record'
+#
+# ActiveRecord::Base.establish_connection(
+#     :adapter => 'sqlite3',
+#     :database =>  'sinatra_application.sqlite3.db'
+# )
 
 module GithubController
 
   def self.client
-    user_token = File.read("tkn.txt")
+    user_token = ENV['GITHUB_TOKEN_API']
     # current_user acces token
     @client = Octokit::Client.new(:access_token => user_token)
   end
@@ -42,7 +42,7 @@ module GithubController
 
 end
 
-# somehow make oauth and chek sign_in? correct_user? authent!
+# somehow make oauth and check sign_in? correct_user? authent!
 
 get '/' do
   @current_user = GithubController.current_user
